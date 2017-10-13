@@ -14,7 +14,8 @@ export default (store) => (next) => (action) => {
 
     switch (action.type) {
         case AppActions.ACTION_APP_NETWORK_REACHABLE:
-            dispatch(CommunicationActions.connectAction());
+            // TODO: Uncomment in production.
+            // dispatch(CommunicationActions.connectAction());
             break;
         case AppActions.ACTION_APP_NETWORK_UNREACHABLE:
             ws = null;

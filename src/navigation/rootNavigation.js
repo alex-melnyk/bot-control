@@ -1,7 +1,7 @@
 import React from 'react';
 import {TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {COLOR_ELEMENT_HIGHLIGHT, COLOR_ELEMENT_INACTIVE, tabsStyles} from "../commons/Styles"
+import {COLOR_TAB_HIGHLIGHT, COLOR_TAB_INACTIVE, tabsStyles} from "../commons/Styles"
 import HomeContainer from '../containers/HomeContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 
@@ -39,8 +39,8 @@ export default RootNavigator = TabNavigator({
     tabBarPosition: 'bottom',
     tabBarOptions: {
         upperCaseLabel: false,
-        inactiveTintColor: COLOR_ELEMENT_INACTIVE,
-        activeTintColor: COLOR_ELEMENT_HIGHLIGHT,
+        inactiveTintColor: COLOR_TAB_INACTIVE,
+        activeTintColor: COLOR_TAB_HIGHLIGHT,
         indicatorStyle: {
             opacity: 0
         },

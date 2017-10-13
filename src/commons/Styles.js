@@ -1,10 +1,11 @@
 import {Platform, StyleSheet, PixelRatio} from 'react-native';
 
-export const COLOR_CONTAINER_BACKGROUND = '#222222';
-export const COLOR_HEADER_BACKGROUND = '#2F2F2F';
-export const COLOR_HEADER_BORDER = '#383838';
-export const COLOR_ELEMENT_INACTIVE = '#A6A6A6';
-export const COLOR_ELEMENT_HIGHLIGHT = '#3BA3F8';
+export const COLOR_CONTAINER_BACKGROUND = '#0D0D0D';
+export const COLOR_HEADER_BACKGROUND = '#181818';
+export const COLOR_HEADER_BORDER = '#313131';
+export const COLOR_TEXT_DEFAULT = '#FFFFFF';
+export const COLOR_TAB_INACTIVE = '#808080';
+export const COLOR_TAB_HIGHLIGHT = '#FF9500';
 
 const flow = {
     container: {
@@ -22,6 +23,26 @@ const common = {
     statusBar: {
         backgroundColor: COLOR_HEADER_BACKGROUND,
         height: Platform.OS === 'ios' ? 0 : 24
+    }
+};
+
+const header = {
+    header: {
+        backgroundColor: COLOR_HEADER_BACKGROUND,
+        borderBottomColor: COLOR_HEADER_BORDER,
+        borderBottomWidth: 1
+    },
+    headerTitle: {
+        color: '#F0F0F0',
+        fontSize: PixelRatio.getPixelSizeForLayoutSize(6)
+    }
+};
+
+const tabs = {
+    tab: {
+        backgroundColor: COLOR_HEADER_BACKGROUND,
+        borderTopColor: COLOR_HEADER_BORDER,
+        borderTopWidth: 1
     }
 };
 
@@ -44,23 +65,7 @@ const home = {
         backgroundColor: COLOR_HEADER_BACKGROUND
     },
     controlButtonContent: {
-        color: COLOR_ELEMENT_HIGHLIGHT
-    }
-};
-
-const header = {
-    header: {
-        backgroundColor: COLOR_HEADER_BACKGROUND
-    },
-    headerTitle: {
-        color: '#F0F0F0'
-    }
-};
-
-const tabs = {
-    tab: {
-        borderTopColor: COLOR_HEADER_BORDER,
-        backgroundColor: COLOR_HEADER_BACKGROUND
+        color: COLOR_TEXT_DEFAULT
     }
 };
 

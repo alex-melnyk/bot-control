@@ -1,0 +1,1 @@
+export const SERVER_ADDRESS = 'labrabot.melnyk.io';

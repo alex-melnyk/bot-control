@@ -1,11 +1,13 @@
 import React from 'react';
-import {PixelRatio} from 'react-native';
 import {TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {tabsStyles} from "../commons/Styles"
+import {COLOR_ELEMENT_HIGHLIGHT, COLOR_ELEMENT_INACTIVE, tabsStyles} from "../commons/Styles"
 import HomeContainer from '../containers/HomeContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 
+/**
+ *
+ */
 export default RootNavigator = TabNavigator({
     Root: {
         screen: HomeContainer,
@@ -33,11 +35,12 @@ export default RootNavigator = TabNavigator({
         }
     },
 }, {
+    initialRouteName: 'Settings',
     tabBarPosition: 'bottom',
     tabBarOptions: {
         upperCaseLabel: false,
-        inactiveTintColor: '#3F3F3F',
-        activeTintColor: '#009FFF',
+        inactiveTintColor: COLOR_ELEMENT_INACTIVE,
+        activeTintColor: COLOR_ELEMENT_HIGHLIGHT,
         indicatorStyle: {
             opacity: 0
         },

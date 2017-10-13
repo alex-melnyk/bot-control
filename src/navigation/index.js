@@ -3,10 +3,13 @@ import {connect} from 'react-redux';
 import {AppState, NetInfo, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import RootNavigator from './rootNavigation';
-import {headerStyles} from "../commons/Styles"
+import {flowStyles, headerStyles} from "../commons/Styles"
 import StatusBar from '../commons/components/StatusBar';
 import * as AppActions from "../store/actions/appActions";
 
+/**
+ *
+ */
 const BaseNavigator = StackNavigator({
     Base: {
         screen: RootNavigator,
@@ -15,6 +18,8 @@ const BaseNavigator = StackNavigator({
             headerTitleStyle: headerStyles.headerTitle,
         })
     }
+}, {
+    cardStyle: flowStyles.container
 });
 
 /**
@@ -27,7 +32,7 @@ class CommonNavigator extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={flowStyles.container}>
                 <StatusBar />
                 <BaseNavigator {...this.props} />
             </View>

@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {commonStyles} from '../commons/Styles';
+import {FlatList, View} from 'react-native';
+import {commonStyles, listStyles} from '../commons/Styles';
+import FlatListItem from "../commons/components/FlatListItem";
+
+const listItems = [
+    {},
+    {},
+    {},
+    {},
+].map((e, i) => ({...e, key: i})); // MOCKup
 
 /**
  *
@@ -10,15 +18,20 @@ class SettingsScreen extends Component {
         title: 'Settings',
     };
 
-    render () {
+    render() {
         return (
             <View style={commonStyles.container}>
-                <Text>HI!</Text>
+                <FlatList
+                    style={listStyles.container}
+                    data={listItems}
+                    renderItem={({item}) => (
+                        <FlatListItem key={item.id} {...item}/>
+                    )}
+                />
             </View>
         );
     }
 }
-
 
 
 export default SettingsScreen;

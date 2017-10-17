@@ -3,7 +3,7 @@ import {TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {COLOR_TAB_HIGHLIGHT, COLOR_TAB_INACTIVE, tabsStyles} from "../commons/Styles"
 import HomeContainer from '../containers/HomeContainer';
-import SettingsContainer from '../containers/SettingsContainer';
+import SettingsNavigator from '../navigation/settingsNavigator';
 
 /**
  *
@@ -17,21 +17,23 @@ export default RootNavigator = TabNavigator({
                 <Icon
                     name="home"
                     color={tintColor}
-                    size={26}
+                    size={22}
                 />
             )
         }
     },
     Settings: {
-        screen: SettingsContainer,
+        screen: SettingsNavigator,
         navigationOptions: {
             tabBarLabel: 'Settings',
             tabBarIcon: ({tintColor}) => (
                 <Icon
+                    style={{padding: 0, margin: 0}}
                     name="cog"
                     color={tintColor}
-                    size={26}
-                />)
+                    size={22}
+                />
+            )
         }
     },
 }, {
@@ -46,14 +48,11 @@ export default RootNavigator = TabNavigator({
         },
         showIcon: true,
         style: tabsStyles.tab,
-        iconStyle: {
+        tabStyle: {
             margin: 0,
-            width: 26,
-            height: 26
+            padding: 0
         },
-        labelStyle: {
-            margin: 0,
-            fontSize: 12
-        },
+        iconStyle: tabsStyles.tabIcon,
+        labelStyle: tabsStyles.tabLabel
     }
 });

@@ -19,7 +19,8 @@ const BaseNavigator = StackNavigator({
         })
     }
 }, {
-    cardStyle: flowStyles.container
+    cardStyle: flowStyles.container,
+    headerMode: 'none'
 });
 
 /**

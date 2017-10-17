@@ -6,6 +6,7 @@ export const COLOR_HEADER_BORDER = '#313131';
 export const COLOR_TEXT_DEFAULT = '#FFFFFF';
 export const COLOR_TAB_INACTIVE = '#808080';
 export const COLOR_TAB_HIGHLIGHT = '#FF9500';
+export const COLOR_FL_ITEM_BACKGROUND = '#171717';
 
 const flow = {
     container: {
@@ -23,26 +24,55 @@ const common = {
     statusBar: {
         backgroundColor: COLOR_HEADER_BACKGROUND,
         height: Platform.OS === 'ios' ? 0 : 24
-    }
+    },
+    textField: {
+        marginHorizontal: 10,
+        paddingVertical: 10,
+        color: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: COLOR_HEADER_BORDER,
+    },
+    textFieldTip: {
+        margin: 10,
+        marginBottom: 0,
+        color: 'gray'
+    },
 };
 
 const header = {
     header: {
         backgroundColor: COLOR_HEADER_BACKGROUND,
         borderBottomColor: COLOR_HEADER_BORDER,
-        borderBottomWidth: 1
+        borderBottomWidth: 0.5
     },
     headerTitle: {
         color: '#F0F0F0',
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(6)
+        fontSize: 13
     }
 };
 
 const tabs = {
     tab: {
+        margin: 0,
+        padding: 0,
+
+        // height: 50,
         backgroundColor: COLOR_HEADER_BACKGROUND,
         borderTopColor: COLOR_HEADER_BORDER,
-        borderTopWidth: 1
+        borderTopWidth: 0.5
+    },
+    tabIcon: {
+        margin: 0,
+        padding: 0,
+
+        // width: 26,
+        // height: 26
+    },
+    tabLabel: {
+        margin: 0,
+        padding: 0,
+
+        fontSize: 12
     }
 };
 
@@ -75,15 +105,45 @@ const list = {
         flexDirection: 'column'
     },
     row: {
+        paddingLeft: 10,
+        borderBottomColor: COLOR_HEADER_BORDER,
+        borderBottomWidth: 0.5,
+        backgroundColor: COLOR_FL_ITEM_BACKGROUND,
+    },
+    rowWrapper: {
+        height:  70,
         flex: 1,
         flexDirection: 'row',
-
+        alignItems: 'center'
+    },
+    leftIconWrapper: {
+        marginRight: 10,
+        padding: 5,
+        // borderRadius: 5,
+        // backgroundColor: '#000',
+    },
+    leftIcon: {
+        color: 'white'
+    },
+    rowTextWrapper: {
+        flex: 1,
+        flexDirection: 'column'
     },
     rowText: {
+        fontSize: 16,
+        fontWeight: 'bold',
         color: 'white'
     },
     rowSubtext: {
         color: 'white'
+    },
+    accessory: {
+        paddingRight: 10
+    },
+    accessoryDisclosure: {
+        color: 'gray'
+    },
+    accessorySwitch: {
     }
 };
 

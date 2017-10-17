@@ -18,7 +18,7 @@ const appStore = createStore(
 );
 
 persistStore(appStore, {
-    whitelist: []
-}, () => console.log('Rehidration complete!'));
+    whitelist: ['appSettings']
+});
 
 export default appStore;

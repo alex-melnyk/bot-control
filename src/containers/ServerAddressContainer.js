@@ -12,7 +12,7 @@ export default connect((state) => ({
         props.navigation.setParams({serverAddress});
     },
     onSave: (serverAddress) => {
-        dispatch(AppSettingsActions.updateServerAddress(serverAddress));
+        dispatch(AppSettingsActions.updateServerAddressAction(serverAddress));
         props.navigation.dispatch(NavigationActions.back());
     }
 }))(ServerAddressScreen);

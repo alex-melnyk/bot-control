@@ -10,8 +10,15 @@ const MI_SERVER_ADDRESS = 'MI_SERVER_ADDRESS';
  *
  */
 class ServerAddressScreen extends Component {
+    componentDidMount() {
+        this.props.navigation.setParams({
+            serverAddress: this.props.serverAddress
+        });
+    }
+
     render() {
         const {params} = this.props.navigation.state;
+        const serverAddress = params ? params.serverAddress : this.props.serverAddress;
 
         return (
             <View style={commonStyles.container}>
@@ -22,7 +29,7 @@ class ServerAddressScreen extends Component {
                 </Text>
                 <TextInput
                     style={commonStyles.textField}
-                    value={params ? params.serverAddress : this.props.serverAddress}
+                    value={serverAddress}
                     onChangeText={this.props.onUpdateValue}
                 />
             </View>
@@ -43,7 +50,7 @@ ServerAddressScreen.navigationOptions = ({navigation}) => ({
             title="Done"
             onPress={() => {
                 // this.props.onSave(this.state.value);
-                navigation.dispatch(AppSettingsActions.updateServerAddress(navigation.state.params.serverAddress));
+                navigation.dispatch(AppSettingsActions.updateServerAddressAction(navigation.state.params.serverAddress));
                 navigation.goBack();
             }}
         />

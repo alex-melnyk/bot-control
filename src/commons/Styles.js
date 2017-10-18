@@ -135,7 +135,7 @@ const list = {
         color: 'white'
     },
     rowSubtext: {
-        color: 'white'
+        color: 'gray'
     },
     accessory: {
         paddingRight: 10

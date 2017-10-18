@@ -13,7 +13,7 @@ export const LIST_ITEM_ACCESSORY_SWITCH = 'switch';
  */
 class FlatListItem extends Component {
     state = {
-        switchValue: !!this.props.checked
+        switchValue: !!this.props.switchValue
     };
 
     // HANDLERS
@@ -22,15 +22,18 @@ class FlatListItem extends Component {
     };
 
     handlePressed = () => {
+        const switchValue = !this.state.switchValue;
+
         if (this.props.accessory === LIST_ITEM_ACCESSORY_SWITCH) {
             this.setState({
-                switchValue: !this.state.switchValue
+                switchValue
             });
         }
 
         if (this.props.onSelect) {
             this.props.onSelect({
-                data: this.props.data
+                data: this.props.data,
+                switchValue
             });
         }
     };

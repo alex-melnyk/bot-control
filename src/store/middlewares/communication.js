@@ -33,9 +33,9 @@ export default (store) => (next) => (action) => {
                 ws.send(action.payload.data);
             }
             break;
-        case CommunicationActions.ACTION_COMM_ERROR:
-            console.log('Error:', action.payload.event);
-            break;
+        // case CommunicationActions.ACTION_COMM_ERROR:
+        //     console.log('Error:', action.payload.event);
+        //     break;
         case CommunicationActions.ACTION_COMM_DISCONNECTED:
             if (ws) {
                 ws.close();
@@ -61,7 +61,6 @@ export default (store) => (next) => (action) => {
  */
 function connectWebSocket(onopen, onmessage, onerror, onclose) {
     const wsaddress = `ws://${SERVER_ADDRESS}`;
-    console.log('WebSocket Address:', wsaddress);
 
     const ws = new WebSocket(wsaddress);
     ws.onopen = onopen;

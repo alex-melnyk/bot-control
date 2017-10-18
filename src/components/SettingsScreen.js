@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import {FlatList, View} from 'react-native';
 import {commonStyles, listStyles} from '../commons/Styles';
 import FlatListItem from "../commons/components/FlatListItem";
-
-const MI_SERVER_ADDRESS = 'MI_SERVER_ADDRESS';
+import * as SettingsMenu from '../commons/menu/settings';
 
 /**
  * Settings list screen.
@@ -14,31 +13,19 @@ class SettingsScreen extends Component {
         title: 'Settings',
     };
 
-    handleSelect = ({data}) => {
-        console.log(data.id);
-
-        switch (data.id) {
-            case MI_SERVER_ADDRESS:
-                this.props.onServerAddressEdit();
-                break;
-        }
-    };
-
     render() {
-        const listItems = [
-            {
-                id: MI_SERVER_ADDRESS,
-                icon: 'server',
-                text: 'Server address',
-                subtext: this.props.serverAddress
-            }
-        ].map((e, i) => ({...e, key: `settings_item_${i}`})); // MOCKup
+        const items = SettingsMenu.items
+            .map((item) => ({
+                ...item,
+                key: `settings_item_${item.id}`
+            }))
+            .map(this.mapToSettings);
 
         return (
             <View style={commonStyles.container}>
                 <FlatList
                     style={listStyles.container}
-                    data={listItems}
+                    data={items.map(this.mapToSettings)}
                     renderItem={({item}) => (
                         <FlatListItem
                             {...item}
@@ -50,10 +37,39 @@ class SettingsScreen extends Component {
             </View>
         );
     }
+
+    mapToSettings = (item) => {
+        switch (item.id) {
+            case SettingsMenu.MI_SETTINGS_SERVER_ADDRESS:
+                return {
+                    ...item,
+                    subtext: this.props.serverAddress
+                };
+            case SettingsMenu.MI_SETTINGS_AUTO_CONNECT:
+                return {
+                    ...item,
+                    switchValue: this.props.autoConnect
+                };
+            default:
+                return item;
+        }
+    };
+
+    handleSelect = ({data, switchValue}) => {
+        switch (data.id) {
+            case SettingsMenu.MI_SETTINGS_SERVER_ADDRESS:
+                this.props.onServerAddressEdit();
+                break;
+            case SettingsMenu.MI_SETTINGS_AUTO_CONNECT:
+                this.props.onAutoConnectChanged(switchValue);
+                break;
+        }
+    };
 }
 
 SettingsScreen.propTypes = {
-    onServerAddressEdit: PropTypes.func.isRequired
+    onServerAddressEdit: PropTypes.func.isRequired,
+    onAutoConnectChanged: PropTypes.func.isRequired
 };
 
 export default SettingsScreen;

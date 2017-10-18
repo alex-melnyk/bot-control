@@ -2,6 +2,7 @@ import * as AppSettingsActions from "../actions/appSettingsActions";
 
 const initialState = {
     serverAddress: 'labrabot.melnyk.io',
+    autoConnect: true
 };
 
 /**

@@ -60,8 +60,6 @@ export const TabsNavigator = TabNavigator({
  */
 class TabsNavigatorWrapper extends Component {
     render() {
-        console.log('RootNavigator', this.props.navigation);
-
         return (
             <TabsNavigator
                 navigation={addNavigationHelpers({

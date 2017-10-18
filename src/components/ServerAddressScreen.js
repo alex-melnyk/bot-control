@@ -10,15 +10,9 @@ const MI_SERVER_ADDRESS = 'MI_SERVER_ADDRESS';
  *
  */
 class ServerAddressScreen extends Component {
-    state = {
-        value: this.props.serverAddress || ''
-    };
-
-    componentDidMount() {
-        // this.props.navigation.setParams({_state: this.state});
-    }
-
     render() {
+        const {params} = this.props.navigation.state;
+
         return (
             <View style={commonStyles.container}>
                 <Text
@@ -28,8 +22,8 @@ class ServerAddressScreen extends Component {
                 </Text>
                 <TextInput
                     style={commonStyles.textField}
-                    value={this.state.value}
-                    onChangeText={(value) => this.setState({value})}
+                    value={params ? params.serverAddress : this.props.serverAddress}
+                    onChangeText={this.props.onUpdateValue}
                 />
             </View>
         );
@@ -37,25 +31,23 @@ class ServerAddressScreen extends Component {
 }
 
 ServerAddressScreen.propTypes = {
-    onSave: PropTypes.func.isRequired
+    onUpdateValue: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    dispatch: PropTypes.func
 };
 
-ServerAddressScreen.navigationOptions = ({navigation}) => {
-    console.log(navigation);
-
-    return {
-        title: 'Server address',
-        headerRight: (
-            <Button
-                title="Done"
-                onPress={() => {
-                    // this.props.onSave(this.state.value);
-                    // navigation.dispatch(AppSettingsActions.updateServerAddress(navigation.state.params._state.value));
-                }}
-            />
-        )
-    };
-};
-
+ServerAddressScreen.navigationOptions = ({navigation}) => ({
+    title: 'Server address',
+    headerRight: (
+        <Button
+            title="Done"
+            onPress={() => {
+                // this.props.onSave(this.state.value);
+                navigation.dispatch(AppSettingsActions.updateServerAddress(navigation.state.params.serverAddress));
+                navigation.goBack();
+            }}
+        />
+    )
+});
 
 export default ServerAddressScreen;

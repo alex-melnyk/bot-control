@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {AppState, NetInfo, View} from 'react-native';
-import {StackNavigator} from 'react-navigation';
+import {addNavigationHelpers, StackNavigator} from 'react-navigation';
 import RootNavigator from './rootNavigation';
 import {flowStyles, headerStyles} from "../commons/Styles"
 import StatusBar from '../commons/components/StatusBar';
@@ -10,7 +10,7 @@ import * as AppActions from "../store/actions/appActions";
 /**
  *
  */
-const BaseNavigator = StackNavigator({
+export const BaseNavigator = StackNavigator({
     Base: {
         screen: RootNavigator,
         navigationOptions: () => ({
@@ -26,7 +26,7 @@ const BaseNavigator = StackNavigator({
 /**
  * Common navigator component.
  */
-class CommonNavigator extends Component {
+class AppNavigatorWrapper extends Component {
     state = {
         appState: AppState.currentState
     };
@@ -34,20 +34,25 @@ class CommonNavigator extends Component {
     render() {
         return (
             <View style={flowStyles.container}>
-                <StatusBar />
-                <BaseNavigator {...this.props} />
+                <StatusBar/>
+                <BaseNavigator
+                    navigation={addNavigationHelpers({
+                        dispatch: this.props.dispatch,
+                        state: this.props.nav
+                    })}
+                />
             </View>
         );
     }
 
     componentDidMount() {
         AppState.addEventListener('change', this.appStateChanged);
-        NetInfo.isConnected.addEventListener('connectionChange', this.props.onConnectionChanged);
+        NetInfo.isConnected.addEventListener('connectionChange', this.connectionChanged);
     }
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.appStateChanged);
-        NetInfo.isConnected.removeEventListener('connectionChange', this.props.onConnectionChanged);
+        NetInfo.isConnected.removeEventListener('connectionChange', this.connectionChanged);
     }
 
     /**
@@ -61,19 +66,21 @@ class CommonNavigator extends Component {
 
         this.setState({appState: nextAppState});
     };
+
+    /**
+     *
+     * @param connected
+     */
+    connectionChanged = (connected) => {
+        if (connected) {
+            this.props.dispatch(AppActions.networkReachableAction());
+        } else {
+            this.props.dispatch(AppActions.networkUnreachableAction());
+        }
+    };
 }
 
-export default connect(
-    (state) => ({
-        ...state.app
-    }),
-    (dispatch) => ({
-        onConnectionChanged: (connected) => {
-            if (connected) {
-                dispatch(AppActions.networkReachableAction());
-            } else {
-                dispatch(AppActions.networkUnreachableAction());
-            }
-        }
-    }),
-)(CommonNavigator);
+export default connect((state) => ({
+    ...state.app,
+    nav: state.nav
+}))(AppNavigatorWrapper);

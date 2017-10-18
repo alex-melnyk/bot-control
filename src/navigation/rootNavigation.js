@@ -1,14 +1,12 @@
-import React from 'react';
-import {TabNavigator} from 'react-navigation';
+import React, {Component} from 'react';
+import {addNavigationHelpers, TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {COLOR_TAB_HIGHLIGHT, COLOR_TAB_INACTIVE, tabsStyles} from "../commons/Styles"
 import HomeContainer from '../containers/HomeContainer';
 import SettingsNavigator from '../navigation/settingsNavigator';
+import {connect} from "react-redux";
 
-/**
- *
- */
-export default RootNavigator = TabNavigator({
+export const TabsNavigator = TabNavigator({
     Root: {
         screen: HomeContainer,
         navigationOptions: {
@@ -56,3 +54,25 @@ export default RootNavigator = TabNavigator({
         labelStyle: tabsStyles.tabLabel
     }
 });
+
+/**
+ *
+ */
+class TabsNavigatorWrapper extends Component {
+    render() {
+        console.log('RootNavigator', this.props.navigation);
+
+        return (
+            <TabsNavigator
+                navigation={addNavigationHelpers({
+                    dispatch: this.props.dispatch,
+                    state: this.props.tabs
+                })}
+            />
+        );
+    }
+}
+
+export default connect((state) => ({
+    tabs: state.tabs
+}))(TabsNavigatorWrapper);

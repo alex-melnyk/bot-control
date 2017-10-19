@@ -76,6 +76,8 @@ const tabs = {
     }
 };
 
+const HOME_BUTTON_SIZE = 100;
+
 const home = {
     container: {
         flex: 1,
@@ -83,16 +85,34 @@ const home = {
         justifyContent: 'center',
         alignItems: 'center'
     },
+    controlsWrapper: {
+        borderRadius: 200,
+
+        alignItems: 'center',
+
+        backgroundColor: COLOR_HEADER_BACKGROUND
+    },
     controlButton: {
-        margin: PixelRatio.getPixelSizeForLayoutSize(3),
-        padding: PixelRatio.getPixelSizeForLayoutSize(10),
+        margin: 0,
+        width: HOME_BUTTON_SIZE,
+        height: HOME_BUTTON_SIZE,
 
         justifyContent: 'center',
         alignItems: 'center',
 
-        borderRadius: 8,
+        borderRadius: 8
+    },
+    controlButtonBg: {
+        margin: 0,
+        width: HOME_BUTTON_SIZE,
+        height: HOME_BUTTON_SIZE,
 
-        backgroundColor: COLOR_HEADER_BACKGROUND
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        borderRadius: 50,
+
+        backgroundColor: COLOR_CONTAINER_BACKGROUND
     },
     controlButtonContent: {
         color: COLOR_TEXT_DEFAULT

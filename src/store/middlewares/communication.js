@@ -36,8 +36,13 @@ export default (store) => (next) => (action) => {
                 );
             });
             break;
+
+        case CommunicationActions.ACTION_COMM_CONNECTED:
+            dispatch(CommunicationActions.initializeAction());
+            break;
         case CommunicationActions.ACTION_COMM_MESSAGE_SEND:
-            if (ws && app.connected) {
+            console.log(action, ws && app.connected);
+            if (ws) {
                 ws.send(action.payload.data);
             }
             break;
@@ -54,12 +59,12 @@ export default (store) => (next) => (action) => {
 
             ws = null;
 
-            if (app.waiting) {
+            if (app.waiting || appSettings.autoConnect) {
                 waitingTimerId = setTimeout(() => {
                     waitingTimerId = null;
 
                     console.log('TRY TO CONNECT', app.network, app.waiting);
-                    if (app.network && app.waiting) {
+                    if (app.network && (app.waiting || appSettings.autoConnect)) {
                         dispatch(CommunicationActions.connectAction());
                     }
                 }, 5000);
@@ -81,7 +86,7 @@ export default (store) => (next) => (action) => {
  * @returns {WebSocket} new WebSocket connection object.
  */
 function connectWebSocket(address, onopen, onmessage, onerror, onclose) {
-    const wsaddress = `wss://${address}`;
+    const wsaddress = `ws://${address}`;
 
     const ws = new WebSocket(wsaddress);
     ws.onopen = onopen;

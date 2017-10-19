@@ -36,58 +36,60 @@ class HomeScreen extends Component {
                     />
                 </View>
 
-                <TouchableOpacity
-                    style={homeStyles.controlButton}
-                    onPress={() => this.arrowButtonClicked(ARROW_DIR_U)}
-                >
-                    <Icon
-                        name="chevron-up"
-                        size={30}
-                        style={homeStyles.controlButtonContent}
-                    />
-                </TouchableOpacity>
-                <View style={{flexDirection: 'row'}}>
+                <View style={homeStyles.controlsWrapper}>
                     <TouchableOpacity
                         style={homeStyles.controlButton}
-                        onPress={() => this.arrowButtonClicked(ARROW_DIR_L)}
+                        onPress={() => this.arrowButtonClicked(ARROW_DIR_U)}
                     >
                         <Icon
-                            name="chevron-left"
+                            name="chevron-up"
                             size={30}
                             style={homeStyles.controlButtonContent}
                         />
                     </TouchableOpacity>
+                    <View style={{flexDirection: 'row'}}>
+                        <TouchableOpacity
+                            style={homeStyles.controlButton}
+                            onPress={() => this.arrowButtonClicked(ARROW_DIR_L)}
+                        >
+                            <Icon
+                                name="chevron-left"
+                                size={30}
+                                style={homeStyles.controlButtonContent}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={homeStyles.controlButtonBg}
+                            onPress={() => this.arrowButtonClicked(ARROW_DIR_S)}
+                        >
+                            <Icon
+                                name="square"
+                                size={30}
+                                style={[homeStyles.controlButtonContent, {color: '#FF9B00'}]}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={homeStyles.controlButton}
+                            onPress={() => this.arrowButtonClicked(ARROW_DIR_R)}
+                        >
+                            <Icon
+                                name="chevron-right"
+                                size={30}
+                                style={homeStyles.controlButtonContent}
+                            />
+                        </TouchableOpacity>
+                    </View>
                     <TouchableOpacity
                         style={homeStyles.controlButton}
-                        onPress={() => this.arrowButtonClicked(ARROW_DIR_S)}
+                        onPress={() => this.arrowButtonClicked(ARROW_DIR_D)}
                     >
                         <Icon
-                            name="square"
-                            size={30}
-                            style={[homeStyles.controlButtonContent, {color: '#FF9B00'}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={homeStyles.controlButton}
-                        onPress={() => this.arrowButtonClicked(ARROW_DIR_R)}
-                    >
-                        <Icon
-                            name="chevron-right"
+                            name="chevron-down"
                             size={30}
                             style={homeStyles.controlButtonContent}
                         />
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity
-                    style={homeStyles.controlButton}
-                    onPress={() => this.arrowButtonClicked(ARROW_DIR_D)}
-                >
-                    <Icon
-                        name="chevron-down"
-                        size={30}
-                        style={homeStyles.controlButtonContent}
-                    />
-                </TouchableOpacity>
             </View>
         );
     }

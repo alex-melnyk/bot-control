@@ -6,10 +6,10 @@ export const ACTION_APP_SETTINGS_UPDATE_AUTO_CONNECT = 'ACTION_APP_SETTINGS_UPDA
  *
  * @param serverAddress new value.
  */
-export function updateServerAddressAction (serverAddress) {
+export function updateServerAddressAction(serverAddress) {
     return {
         type: ACTION_APP_SETTINGS_UPDATE_SERVER_ADDRESS,
-            payload: {serverAddress}
+        payload: {serverAddress}
     };
 }
 

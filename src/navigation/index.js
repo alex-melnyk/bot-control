@@ -47,11 +47,13 @@ class AppNavigatorWrapper extends Component {
 
     componentDidMount() {
         AppState.addEventListener('change', this.appStateChanged);
+
         NetInfo.isConnected.addEventListener('connectionChange', this.connectionChanged);
     }
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.appStateChanged);
+
         NetInfo.isConnected.removeEventListener('connectionChange', this.connectionChanged);
     }
 

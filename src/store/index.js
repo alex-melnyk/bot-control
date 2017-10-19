@@ -1,3 +1,4 @@
+import {AsyncStorage} from 'react-native';
 import {createStore, applyMiddleware} from 'redux';
 import {persistStore} from 'redux-persist';
 import thunk from 'redux-thunk';
@@ -18,7 +19,10 @@ const appStore = createStore(
 );
 
 persistStore(appStore, {
+    storage: AsyncStorage,
     whitelist: ['appSettings']
+}, () => {
+    console.log('Rehidration complete!')
 });
 
 export default appStore;

@@ -4,23 +4,12 @@ export const ACTION_COMM_ERROR = 'ACTION_COMM_ERROR';
 export const ACTION_COMM_DISCONNECT = 'ACTION_COMM_DISCONNECT';
 export const ACTION_COMM_MESSAGE_RECEIVE = 'ACTION_COMM_MESSAGE_RECEIVE';
 export const ACTION_COMM_MESSAGE_SEND = 'ACTION_COMM_MESSAGE_SEND';
-export const ACTION_WS_SET_NAME = 'SET_NAME';
 
 /**
  * Connect to server.
  */
 export function connectAction() {
     return {type: ACTION_COMM_CONNECT};
-}
-
-/**
- * Send initialize message to server.
- */
-export function initializeAction() {
-    return sendMessageAction({
-        name: ACTION_WS_SET_NAME,
-        data: 'MOBILE'
-    });
 }
 
 /**

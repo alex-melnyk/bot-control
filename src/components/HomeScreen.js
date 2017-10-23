@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {homeStyles} from '../commons/Styles';
 
-const ARROW_DIR_U = 'up';
-const ARROW_DIR_L = 'left';
-const ARROW_DIR_R = 'right';
-const ARROW_DIR_D = 'down';
-const ARROW_DIR_S = 'stop';
+export const ARROW_DIR_U = 'up';
+export const ARROW_DIR_L = 'left';
+export const ARROW_DIR_R = 'right';
+export const ARROW_DIR_D = 'down';
+export const ARROW_DIR_S = 'stop';
 
 /**
  *
@@ -95,9 +96,13 @@ class HomeScreen extends Component {
     }
 
     arrowButtonClicked = (direction) => {
-
+        this.props.sendCommand(direction);
     };
 }
+
+HomeScreen.propTypes = {
+    sendCommand: PropTypes.func.isRequired
+};
 
 
 export default HomeScreen;

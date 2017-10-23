@@ -1,7 +1,7 @@
 import * as CommunicationActions from "../actions/communicationActions";
 import * as AppActions from "../actions/appActions";
 import {WS_PROTOCOL} from "../../commons/Constants";
-
+import * as WsActions from "../actions/wsActions";
 
 
 let ws = null;
@@ -41,7 +41,7 @@ export default (store) => (next) => (action) => {
             break;
 
         case CommunicationActions.ACTION_COMM_CONNECTED:
-            dispatch(CommunicationActions.initializeAction());
+            dispatch(WsActions.initializeAction());
             break;
         case CommunicationActions.ACTION_COMM_MESSAGE_SEND:
             console.log(action, ws && app.connected);
@@ -96,5 +96,6 @@ function connectWebSocket(address, onopen, onmessage, onerror, onclose) {
     ws.onmessage = onmessage;
     ws.onerror = onerror;
     ws.onclose = onclose;
+
     return ws;
 }

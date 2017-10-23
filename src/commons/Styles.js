@@ -8,6 +8,8 @@ export const COLOR_TAB_INACTIVE = '#808080';
 export const COLOR_TAB_HIGHLIGHT = '#FF9500';
 export const COLOR_FL_ITEM_BACKGROUND = '#171717';
 
+const HOME_BUTTON_SIZE = 100;
+
 const flow = {
     container: {
         flex: 1,
@@ -76,8 +78,6 @@ const tabs = {
     }
 };
 
-const HOME_BUTTON_SIZE = 100;
-
 const home = {
     container: {
         flex: 1,
@@ -89,6 +89,9 @@ const home = {
         borderRadius: 200,
 
         alignItems: 'center',
+
+        borderWidth: 1,
+        borderColor: COLOR_HEADER_BORDER,
 
         backgroundColor: COLOR_HEADER_BACKGROUND
     },
@@ -111,6 +114,9 @@ const home = {
         alignItems: 'center',
 
         borderRadius: 50,
+
+        borderWidth: 1,
+        borderColor: COLOR_HEADER_BORDER,
 
         backgroundColor: COLOR_CONTAINER_BACKGROUND
     },

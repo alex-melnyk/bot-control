@@ -49,7 +49,7 @@ const header = {
     },
     headerTitle: {
         color: '#F0F0F0',
-        fontSize: 13
+        fontSize: 17
     }
 };
 
@@ -127,13 +127,18 @@ const home = {
 
 const list = {
     container: {
+        marginTop: -0.5,
         flex: 1,
         flexDirection: 'column'
     },
+    containerSeparator: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLOR_HEADER_BORDER
+    },
     row: {
         paddingLeft: 10,
-        borderBottomColor: COLOR_HEADER_BORDER,
-        borderBottomWidth: 0.5,
+        // borderBottomColor: COLOR_HEADER_BORDER,
+        // borderBottomWidth: 0.5,
         backgroundColor: COLOR_FL_ITEM_BACKGROUND,
     },
     rowWrapper: {
@@ -141,6 +146,11 @@ const list = {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    rowSeparator: {
+        marginLeft: 54,
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLOR_HEADER_BORDER
     },
     leftIconWrapper: {
         marginRight: 10,

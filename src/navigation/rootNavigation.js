@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {addNavigationHelpers, TabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {COLOR_TAB_HIGHLIGHT, COLOR_TAB_INACTIVE, tabsStyles} from "../commons/Styles"
@@ -10,10 +10,10 @@ export const TabsNavigator = TabNavigator({
     Root: {
         screen: HomeContainer,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Control',
             tabBarIcon: ({tintColor}) => (
                 <Icon
-                    name="home"
+                    name="arrows"
                     color={tintColor}
                     size={22}
                 />
@@ -26,7 +26,6 @@ export const TabsNavigator = TabNavigator({
             tabBarLabel: 'Settings',
             tabBarIcon: ({tintColor}) => (
                 <Icon
-                    style={{padding: 0, margin: 0}}
                     name="cog"
                     color={tintColor}
                     size={22}
@@ -37,6 +36,8 @@ export const TabsNavigator = TabNavigator({
 }, {
     initialRouteName: 'Settings',
     tabBarPosition: 'bottom',
+    animationEnabled: true,
+    swipeEnabled: true,
     tabBarOptions: {
         upperCaseLabel: false,
         inactiveTintColor: COLOR_TAB_INACTIVE,
@@ -55,22 +56,13 @@ export const TabsNavigator = TabNavigator({
     }
 });
 
-/**
- *
- */
-class TabsNavigatorWrapper extends Component {
-    render() {
-        return (
-            <TabsNavigator
-                navigation={addNavigationHelpers({
-                    dispatch: this.props.dispatch,
-                    state: this.props.tabs
-                })}
-            />
-        );
-    }
-}
-
 export default connect((state) => ({
     tabs: state.tabs
-}))(TabsNavigatorWrapper);
+}))(({dispatch, tabs}) => (
+    <TabsNavigator
+        navigation={addNavigationHelpers({
+            dispatch,
+            state: tabs
+        })}
+    />
+));

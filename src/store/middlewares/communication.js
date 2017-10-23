@@ -1,5 +1,8 @@
 import * as CommunicationActions from "../actions/communicationActions";
 import * as AppActions from "../actions/appActions";
+import {WS_PROTOCOL} from "../../commons/Constants";
+
+
 
 let ws = null;
 let waitingTimerId = null;
@@ -47,7 +50,7 @@ export default (store) => (next) => (action) => {
             }
             break;
         case CommunicationActions.ACTION_COMM_ERROR:
-            console.log('WS ERROR:', 'AUTO-CONNECT', appSettings.autoConnect);
+            // console.log('WS ERROR:', 'AUTO-CONNECT', appSettings.autoConnect);
             if (appSettings.autoConnect) {
                 dispatch(AppActions.waitNetworkReachableAction());
             }
@@ -63,7 +66,7 @@ export default (store) => (next) => (action) => {
                 waitingTimerId = setTimeout(() => {
                     waitingTimerId = null;
 
-                    console.log('TRY TO CONNECT', app.network, app.waiting);
+                    // console.log('TRY TO CONNECT', app.network, app.waiting);
                     if (app.network && (app.waiting || appSettings.autoConnect)) {
                         dispatch(CommunicationActions.connectAction());
                     }
@@ -86,7 +89,7 @@ export default (store) => (next) => (action) => {
  * @returns {WebSocket} new WebSocket connection object.
  */
 function connectWebSocket(address, onopen, onmessage, onerror, onclose) {
-    const wsaddress = `ws://${address}`;
+    const wsaddress = `${WS_PROTOCOL}://${address}`;
 
     const ws = new WebSocket(wsaddress);
     ws.onopen = onopen;

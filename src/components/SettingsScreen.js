@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import {FlatList, View} from 'react-native';
-import {commonStyles, listStyles} from '../commons/Styles';
+import {COLOR_HEADER_BORDER, commonStyles, listStyles} from '../commons/Styles';
 import FlatListItem from "../commons/components/FlatListItem";
 import * as SettingsMenu from '../commons/menu/settings';
 
@@ -33,6 +33,9 @@ class SettingsScreen extends Component {
                             onSelect={this.handleSelect}
                         />
                     )}
+                    ItemSeparatorComponent={() => (<View style={listStyles.rowSeparator} />)}
+                    ListHeaderComponent={() => (<View style={listStyles.containerSeparator} />)}
+                    ListFooterComponent={() => (<View style={listStyles.containerSeparator} />)}
                 />
             </View>
         );
@@ -48,7 +51,8 @@ class SettingsScreen extends Component {
             case SettingsMenu.MI_SETTINGS_AUTO_CONNECT:
                 return {
                     ...item,
-                    switchValue: this.props.autoConnect
+                    switchValue: this.props.autoConnect,
+                    subtext: this.props.connected ? 'Connected' : 'Disconnected'
                 };
             default:
                 return item;
